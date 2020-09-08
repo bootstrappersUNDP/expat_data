@@ -1,0 +1,23 @@
+{   "name": "Expats Distribution in Serbia",
+  "geo_locations": [
+    {"name": "country_groups", "values": ["worldwide"]},
+    {"name": "country_groups", "values": ["africa"]},
+    {"name": "country_groups", "values": ["asia"]},
+    {"name": "country_groups", "values": ["central_america"]},
+    {"name": "country_groups", "values": ["north_america"]},
+    {"name": "country_groups", "values": ["south_america"]},
+    {"name": "country_groups", "values": ["europe"]},
+    {"name": "country_groups", "values": ["mercosur"]},
+    {"name": "country_groups", "values": ["oceania"]}
+  ],
+  "behavior": [
+      {"or" : [6027149004983], "name" : "Expats (Serbia)"}
+  ],
+  "ages_ranges": [{
+		"max": 65,
+		"min": 13
+	}],
+  "genders": [0]
+}
+
+
