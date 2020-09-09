@@ -23,11 +23,11 @@
 
 **Package Name:** pysocialwatcher
 
-**Facebook Ads API version supported:** 2.9
+**Facebook Ads API version supported:** 8.0
 
 **License:** MIT
 
-**Python Version:** 2.7
+**Python Version:** 3.8
 
 
 ### What is this for
