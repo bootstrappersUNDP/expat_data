@@ -38,3 +38,4 @@ tests/*.csv
 /pysocialwatcher/input_examples/small_sp_subregions.json
 /pysocialwatcher/input_examples/soccer_gcc_example.json
 /pysocialwatcher/input_examples/newyork_expats.json
+.DS_Store

@@ -1,0 +1,21 @@
+{   "name": "Expats Distribution in Serbia",
+  "geo_locations": [
+    {"name": "countries", "values": ["US"]},
+    {"name": "countries", "values": ["DE"]}, 
+    {"name": "countries", "values": ["CA"]},
+    {"name": "countries", "values": ["FR"]},
+    {"name": "countries", "values": ["IT"]},
+    {"name": "countries", "values": ["JP"]},
+    {"name": "countries", "values": ["GB"]}
+  ],
+  "behavior": [
+      {"or" : [6027149004983], "name" : "Expats (Serbia)"}
+  ],
+  "ages_ranges": [{
+		"max": 65,
+		"min": 13
+	}],
+  "genders": [0]
+}
+
+
