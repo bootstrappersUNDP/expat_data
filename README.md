@@ -1,10 +1,16 @@
 # Facebook Expats Data
 
+## 1. Introduction
+This depository is used for building a code and downloading Facebook data that serves as an input for the analysis and visualization of Serbian emigration. This account will be handed over to the UNDP team upon the completion of the project.
 
-# pySocialWatcher
+## 2. Facebook API
+
+## 3. Fetching the data
+
+
+### pySocialWatcher
 ### A Social Data Collector from Facebook Marketing API
-#### I'm more than pleased that many teams used this library. But I need your help to support it. Please feel free to pull requests that solve issues. Unfortunatelly, my time is very very limited to keep updating this repository.
-#### If this package helps your research somehow, reference this paper:
+#### Reference:
 
 ```
 @inproceedings{araujo2017facebook,
