@@ -28,29 +28,14 @@ To connect with the API, we used python library pySocialWatcher:
  keywords = {Facebook, Advertising, Epidemihology, Social Media, Health},
 } 
 ```
-
-**Package Name:** pysocialwatcher
-
-**Facebook Ads API version supported:** 8.0
-
 **License:** MIT
-
-**Python Version:** 3.8
-
-
-#### What is this for
-This package tries to get the full potencial of the Facebook Marketing API for Social Analysis research.
-Recent works show that online social media has a huge potencial to provide interesting insights on trends of across demographic groups.
-
-Examples of research question that it can answer:
-* For each european country, get how many people are interested in Science?
-* Get how many people in each GCC country who is Graduated AND is interested in Football, and how many is not interested in Football breakdown by: gender, age range, scholarity, language and citizenship.
 
 
 ##### Facebook Marketing API Refereces page:
 Targeting Specs: https://developers.facebook.com/docs/marketing-api/targeting-specs/v2.8
 
 Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targeting-search/v2.8
+
 #### Limitations:
 * Current supported API fields are listed below:
     ```
