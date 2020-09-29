@@ -14,10 +14,7 @@ country of their current location, their age, gender and the country of their pr
 
 ### 2.1 Fetching the data
 
-
-### pySocialWatcher
-### A Social Data Collector from Facebook Marketing API
-#### Reference:
+To connect with the API, we used python library pySocialWatcher:
 
 ```
 @inproceedings{araujo2017facebook,
@@ -32,10 +29,6 @@ country of their current location, their age, gender and the country of their pr
 } 
 ```
 
- 
-[![Build Status](https://travis-ci.org/maraujo/pySocialWatcher.svg?branch=master)](https://travis-ci.org/maraujo/pySocialWatcher)
-[![codecov](https://codecov.io/gh/maraujo/pySocialWatcher/branch/dev/graph/badge.svg)](https://codecov.io/gh/maraujo/pySocialWatcher)
-
 **Package Name:** pysocialwatcher
 
 **Facebook Ads API version supported:** 8.0
@@ -45,7 +38,7 @@ country of their current location, their age, gender and the country of their pr
 **Python Version:** 3.8
 
 
-### What is this for
+#### What is this for
 This package tries to get the full potencial of the Facebook Marketing API for Social Analysis research.
 Recent works show that online social media has a huge potencial to provide interesting insights on trends of across demographic groups.
 
@@ -58,7 +51,7 @@ Examples of research question that it can answer:
 Targeting Specs: https://developers.facebook.com/docs/marketing-api/targeting-specs/v2.8
 
 Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targeting-search/v2.8
-### Limitations:
+#### Limitations:
 * Current supported API fields are listed below:
     ```
     "interests",
@@ -73,19 +66,19 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
     "geo_locations"
     ```
 
-### Install
+#### Install
     git clone https://github.com/maraujo/pySocialWatcher.git
     cd pySocialWatcher
     pip install -r requirements.txt
     python3 setup.py install
     
-### Tips added by Tica
+#### Tips added by Tica
 Create a separate virtual environment before installing all the pakcages.
     
     python3 -m venv env
     . env/bin/activate
 
-### Quick Start
+#### Quick Start
 You should have a .csv file with your Facebook tokens and accountIDs.
 Example: pySocialWatcher/pysocialwatcher/facebook_credentials_example.csv
   
@@ -98,23 +91,6 @@ or
     >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
     >>> watcher.run_data_collection("pysocialwatcher/input_examples/quick_example.json")
 
-### How it works (slides):
-Check the slides: https://goo.gl/WzE9ic
-
-### Features
-1. Static input json format to make you experiments easily reproducible.
-2. Support multiple Facebook tokens.
-3. Multiple tokens are processed in parallel to speedup data collection.
-3. Complex logic queries in the Facebook Marketing API with 'or', 'and', 'not', for example:.
-```
-      "interests": [{
-            "not": [6003442346642],
-            "and": [6004115167424, 6003277229371],
-            "name": "Not interested in Football, but interest in some physical activity"
-        }  
-        
-```
-4. Automatically save the state every constants.SAVE_EVERY requests. If any problem happens you can load the incomplete file and continue the data collection (```load_data_and_continue_collection```)
 
 ### 2.2. Calibrating the raw data
 
