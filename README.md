@@ -57,7 +57,7 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
 
 ![Map](data/Map_low_res.png)
 
-![Pyramid](data/Structure.png =60x40)
+![Pyramid](data/Structure.png)
 
 ### 2.2. Calibrating the raw data
 
