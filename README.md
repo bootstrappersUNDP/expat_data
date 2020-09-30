@@ -1,16 +1,12 @@
 # Facebook Expats Data
 
-#### Note: Initial results can be found in the folder *Data*
 ## 1. Introduction
-This depository is used for building a code and downloading Facebook data that serves as an input for the analysis and visualization of Serbian emigration. This account will be handed over to the UNDP team upon the completion of the project. The purpose of using the Facebook estimations is not to reproduce migration statistics, but rather to generate snapshots of the estimates of expatriates that could be used to measure emigration trends. Estimates of social media application users who are classified as expats can be a timely, low-cost, and almost globally available source of information for estimating stocks of international migrants. Our methodology allows a low-cost and automated estimations. However, there are important methodological and data integrity issues with using social media data sources for studying migration-related phenomena. 
+This depository is used to build the code and download Facebook data which serves as an input for the analysis and visualization of Serbian emigration. This account will be handed over to the UNDP team upon the completion of the project. The purpose of using the Facebook estimations is not to reproduce migration statistics, but rather to generate snapshots of the estimates of expatriates that could be used to measure emigration trends. Using social media in this regard can be a timely and low-cost source of information.  Our model will fetch new data every two months, which, we hope, will give a glimpse into the cross-border movement of the Serbian population. However, there are important methodological and data integrity issues with using social media data sources that we will discuss and address.  
 
 ## 2. Facebook API and data
 
-We use data from the Facebook advertising platform to estimate stocks of “expats” in various countries (see below for a discussion on the definition of “expat”). The Facebook
-advertising platform allows advertisers to select the characteristics of their target audience, for instance, age and gender, and to obtain an estimate of the number of monthly active users of the Facebook Network (Facebook, Instagram, Messenger) who meet the selected criteria and could be reached through an advertising campaign. The frequent discrepancy between Facebook Network estimations of the number of individuals with certain characteristics living in a country and census data on the same population groups opens up questions about the reliability of Facebook estimates on the one hand, and the possible gaps in traditional statistics, on the other.
+We use data from the Facebook API to estimate the number of Serbian “expats” in countries around the world. "Expat" is Facebook's definition of a person who lived in one country ("home country"), but moved to another country. "Home country" in our case is Serbia, and host countries are all coutries recognized by Facebook's API. Additionally, we added additional parameters, such as age group, education, marriage status and gender. The API returns the estimates of the number of monthly active users of the FB platforms, which includes Facebook, Instagram, and Messenger. The estimates present a subset of the total population and need to be calibrated based on the official numbers. 
 
-Through the Facebook’s Marketing Application Programming Interface (API), we collected data about the number of monthly active users of the Facebook Network based on the
-country of their current location, their age, gender and the country of their previous residence of which they are considered as expats. The Facebook Network’s definition of expats – “People who used to live in country X who now live abroad” – is quite generic. Facebook does not disclose details about the method used for classifying users as expats.
 
 ### 2.1 Fetching the data
 
@@ -71,6 +67,8 @@ More information on the definition of the categories can be found here https://d
 
 
 ### 2.2. Downloaded data
+
+The query returned a total of 595 thousand monthly users who are identified as Serbian expats. The map below presents per-country breakdown of that number. Note that 
 
 ![Map](data/Map.png)
 
