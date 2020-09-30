@@ -15,7 +15,7 @@ country of their current location, their age, gender and the country of their pr
 More information on the definition of the categories can be found here https://developers.facebook.com/docs/marketing-api/audiences/reference/advanced-targeting/.
 ### 2.1 Fetching the data
 
-To connect with the API, we used python library pySocialWatcher:
+To connect with the API, we used python library [pySocialWatcher](https://github.com/maraujo/pySocialWatcher/blob/master/README.md).
 
 ```
 @inproceedings{araujo2017facebook,
@@ -52,30 +52,6 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
     "geo_locations"
     ```
 
-#### Install
-    git clone https://github.com/maraujo/pySocialWatcher.git
-    cd pySocialWatcher
-    pip install -r requirements.txt
-    python3 setup.py install
-    
-#### Tips added by Tica
-Create a separate virtual environment before installing all the pakcages.
-    
-    python3 -m venv env
-    . env/bin/activate
-
-#### Quick Start
-You should have a .csv file with your Facebook tokens and accountIDs.
-Example: pySocialWatcher/pysocialwatcher/facebook_credentials_example.csv
-  
-    python3 pysocialwatcher/test_windows.py
-
-or
-
-    >>> from pysocialwatcher import watcherAPI 
-    >>> watcher = watcherAPI() 
-    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcher.run_data_collection("pysocialwatcher/input_examples/quick_example.json")
 
 ### 2.2. Downloaded data
 
