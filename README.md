@@ -72,6 +72,12 @@ The query returned a total of around 600 thousand monthly users who are identifi
 
 ![Map](data/Map.png)
 
+
+Some of the results were not expected, such as India, Indonesia and Mongolia. We will discuss these results in more detail later in the text.
+
+![Rank](data/rank.png)
+
+
 We compared the age structure of the Serbian Facebook users with the official data from the Statistical Office of Serbia and found a signifficant age bias. Additionally, the number of Facebook users aged 18-24 is higher than the country's population in the same age group. The likely reason is the existence of abandoned accountrs, and/or multiple accounts per person (same person has an account of Facebook, Instagram, and Messenger). Finally, the data does not exhibit signifficant gender bias, as the ratio of female to male users is 49/51.
 
 ![Pyramid](data/Structure.png)
