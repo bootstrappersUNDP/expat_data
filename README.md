@@ -55,7 +55,7 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
 
 ### 2.2. Downloaded data
 
-![Map](data/Map_low_res.png)
+![Map](data/Map.png)
 
 We analysed the characteristics of Facebook Network statistics to develop a robust model for correcting the bias given by the fact that Facebook Network users may over or under-
 represent a country’s population at large. As shown in Figure 2, Facebook Network users’ representativeness varies based on the country under consideration, as well as
