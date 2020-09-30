@@ -89,7 +89,15 @@ updated. We additionally used updated population statistics from UNDESA (2017a) 
 
 ## 3. Methodology
 
-We developed a methodology to estimate the number of individuals who fulfil specific demographic criteria based on non-representative Facebook Network statistics. For example, we want to estimate the number of individuals who are in a particular age group, are female or male, who used to live in, e.g. Germany, and who now live in another country,
-e.g. France, based on the number of Facebook Network users that meet those age and gender criteria and are classified by Facebook as German expats in France. In the following
-sections, we first analyse the Facebook Network data and its limitations, then we pre-assess and clean the Facebook Network statistics, and lastly, we present the model that
-we developed.
+Our methodology is based on the following three papers:
+[Monitoring of the Venezuelan exodus through
+Facebook’s advertising platform](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0229175)
+[Quantifying international human mobility
+patterns using Facebook Network data](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0224134)
+[Migration Data using Social Media](https://ec.europa.eu/jrc/en/publication/migration-data-using-social-media-european-perspective)
+
+The goal is to estimate the number of expats based on non-representative raw Facebook data. We propose a three-step method:
+
+1. Analyze Facebook data limitations, 
+2. Clean the data.
+3. Develop a model. 
