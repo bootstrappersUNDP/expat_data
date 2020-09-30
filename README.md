@@ -57,6 +57,12 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
 
 ![Map](data/Map_low_res.png)
 
+We analysed the characteristics of Facebook Network statistics to develop a robust model for correcting the bias given by the fact that Facebook Network users may over or under-
+represent a country’s population at large. As shown in Figure 2, Facebook Network users’ representativeness varies based on the country under consideration, as well as
+demographic characteristics of the population, namely gender and age. When the number of Facebook Network users in a country and a given age group is higher than the actual
+number of residents in that age group (based on official statistics), it means that users have multiple unlinked Facebook Network accounts, for instance on Facebook, Instagram
+and Messenger. We assume that there are two main drivers of Facebook Network platforms’ usage.
+
 ![Pyramid](data/Structure.png)
 
 ### 2.2. Calibrating the raw data
