@@ -1,5 +1,5 @@
 # Facebook Expats Data
-
+https://developers.facebook.com/docs/marketing-api/audiences/reference/advanced-targeting/
 #### Note: Initial results can be found in the folder *Data*
 ## 1. Introduction
 This depository is used for building a code and downloading Facebook data that serves as an input for the analysis and visualization of Serbian emigration. This account will be handed over to the UNDP team upon the completion of the project. The purpose of using the Facebook estimations is not to reproduce migration statistics, but rather to generate snapshots of the estimates of expatriates that could be used to measure emigration trends. Estimates of social media application users who are classified as expats can be a timely, low-cost, and almost globally available source of information for estimating stocks of international migrants. Our methodology allows a low-cost and automated estimations. However, there are important methodological and data integrity issues with using social media data sources for studying migration-related phenomena. 
