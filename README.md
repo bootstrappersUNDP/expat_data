@@ -12,7 +12,6 @@ advertising platform allows advertisers to select the characteristics of their t
 Through the Facebook’s Marketing Application Programming Interface (API), we collected data about the number of monthly active users of the Facebook Network based on the
 country of their current location, their age, gender and the country of their previous residence of which they are considered as expats. The Facebook Network’s definition of expats – “People who used to live in country X who now live abroad” – is quite generic. Facebook does not disclose details about the method used for classifying users as expats.
 
-More information on the definition of the categories can be found here https://developers.facebook.com/docs/marketing-api/audiences/reference/advanced-targeting/.
 ### 2.1 Fetching the data
 
 To connect with the API, we used python library [pySocialWatcher](https://github.com/maraujo/pySocialWatcher/blob/master/README.md).
@@ -37,8 +36,24 @@ Targeting Specs: https://developers.facebook.com/docs/marketing-api/targeting-sp
 
 Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targeting-search/v2.8
 
+#### Install
+    git clone https://github.com/maraujo/pySocialWatcher.git
+    cd pySocialWatcher
+    pip install -r requirements.txt
+    python setup.py install
+    
+#### Quick Start
+You should have a .csv file with your Facebook tokens and accountIDs.
+Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
+  
+    >>> from pysocialwatcher import watcherAPI 
+    >>> watcher = watcherAPI() 
+    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
+    >>> watcher.run_data_collection("pysocialwatcher/input_examples/quick_example.json")
+
+
 #### Limitations:
-* Current supported API fields are listed below:
+Current supported API fields are listed below:
     ```
     "interests",
     "behaviors",
@@ -51,6 +66,8 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
     "age_max",
     "geo_locations"
     ```
+
+More information on the definition of the categories can be found here https://developers.facebook.com/docs/marketing-api/audiences/reference/advanced-targeting/.
 
 
 ### 2.2. Downloaded data
