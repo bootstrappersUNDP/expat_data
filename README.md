@@ -56,6 +56,9 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
 ### 2.2. Downloaded data
 
 ![Map](data/Map_low_res.png)
+
+![Pyramid](data/Structure.png)
+
 ### 2.2. Calibrating the raw data
 
 Official statistics on international migrant stocks disaggregated by age, sex, country of birth and destination were used to a) identify the degree to which a migrant assimilates to the Facebook Network usage patterns of the destination country and b) evaluate and compare the results of the model proposed. Migration statistics at this level of disaggregation are available from UNDESA (2008), the OECD in collaboration with the World Bank (2010) and Eurostat (2017a). We used Eurostat statistics since they were more
