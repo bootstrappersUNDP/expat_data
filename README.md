@@ -1,5 +1,5 @@
 # Facebook Expats Data
-https://developers.facebook.com/docs/marketing-api/audiences/reference/advanced-targeting/
+
 #### Note: Initial results can be found in the folder *Data*
 ## 1. Introduction
 This depository is used for building a code and downloading Facebook data that serves as an input for the analysis and visualization of Serbian emigration. This account will be handed over to the UNDP team upon the completion of the project. The purpose of using the Facebook estimations is not to reproduce migration statistics, but rather to generate snapshots of the estimates of expatriates that could be used to measure emigration trends. Estimates of social media application users who are classified as expats can be a timely, low-cost, and almost globally available source of information for estimating stocks of international migrants. Our methodology allows a low-cost and automated estimations. However, there are important methodological and data integrity issues with using social media data sources for studying migration-related phenomena. 
@@ -12,6 +12,7 @@ advertising platform allows advertisers to select the characteristics of their t
 Through the Facebook’s Marketing Application Programming Interface (API), we collected data about the number of monthly active users of the Facebook Network based on the
 country of their current location, their age, gender and the country of their previous residence of which they are considered as expats. The Facebook Network’s definition of expats – “People who used to live in country X who now live abroad” – is quite generic. Facebook does not disclose details about the method used for classifying users as expats.
 
+More information on the definition of the categories can be found here https://developers.facebook.com/docs/marketing-api/audiences/reference/advanced-targeting/.
 ### 2.1 Fetching the data
 
 To connect with the API, we used python library pySocialWatcher:
