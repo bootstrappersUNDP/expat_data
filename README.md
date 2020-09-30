@@ -68,22 +68,14 @@ More information on the definition of the categories can be found here https://d
 
 ### 2.2. Downloaded data
 
-The query returned a total of 595 thousand monthly users who are identified as Serbian expats. The map below presents per-country breakdown of that number. Note that 
+The query returned a total of around 600 thousand monthly users who are identified as Serbian expats. The map below presents per-country breakdown of that number.
 
 ![Map](data/Map.png)
 
-We analysed the characteristics of Facebook Network statistics to develop a robust model for correcting the bias given by the fact that Facebook Network users may over or under-
-represent a country’s population at large. As shown in Figure 2, Facebook Network users’ representativeness varies based on the country under consideration, as well as
-demographic characteristics of the population, namely gender and age. When the number of Facebook Network users in a country and a given age group is higher than the actual
-number of residents in that age group (based on official statistics), it means that users have multiple unlinked Facebook Network accounts, for instance on Facebook, Instagram
-and Messenger. We assume that there are two main drivers of Facebook Network platforms’ usage.
+We compared the age structure of the Serbian Facebook users with the official data from the Statistical Office of Serbia and found a signifficant age bias. Additionally, the number of Facebook users aged 18-24 is higher than the country's population in the same age group. The likely reason is the existence of abandoned accountrs, and/or multiple accounts per person (same person has an account of Facebook, Instagram, and Messenger). Finally, the data does not exhibit signifficant gender bias, as the ratio of female to male users is 49/51.
 
 ![Pyramid](data/Structure.png)
 
-### 2.2. Calibrating the raw data
-
-Official statistics on international migrant stocks disaggregated by age, sex, country of birth and destination were used to a) identify the degree to which a migrant assimilates to the Facebook Network usage patterns of the destination country and b) evaluate and compare the results of the model proposed. Migration statistics at this level of disaggregation are available from UNDESA (2008), the OECD in collaboration with the World Bank (2010) and Eurostat (2017a). We used Eurostat statistics since they were more
-updated. We additionally used updated population statistics from UNDESA (2017a) for calibrating the Facebook Network data.
 
 ## 3. Methodology
 
@@ -96,6 +88,8 @@ patterns using Facebook Network data](https://journals.plos.org/plosone/article?
 
 The goal is to estimate the number of expats based on non-representative raw Facebook data. We propose a three-step method:
 
-1. Analyze Facebook data limitations, 
-2. Clean the data.
-3. Develop a model. 
+### 3.1 Analyze Facebook data limitations
+
+### 3.2. Clean the data
+
+### 3.3 Develop a model and calibrate the data
