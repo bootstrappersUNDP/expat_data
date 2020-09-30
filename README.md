@@ -1,11 +1,11 @@
 # Facebook Expats Data
 
 ## 1. Introduction
-This depository is used to build the code and download Facebook data which serves as an input for the analysis and visualization of the Serbian emigration. This account will be handed over to the UNDP team upon the completion of the project. The purpose of using the Facebook estimations is not to reproduce migration statistics, but rather to generate snapshots of the estimates of expatriates that could be used to measure emigration trends. Using social media in this regard can be a timely and low-cost source of information.  Our model will fetch new data every two months, which, we hope, will give a glimpse into the cross-border movement of the Serbian population. However, there are important methodological and data integrity issues with using social media data sources that we will discuss and address.  
+This depository is used to build the code and download Facebook data, which serves as an input for the analysis and visualization of the Serbian emigration. This account will be handed over to the UNDP team upon the completion of the project. The purpose of using the Facebook estimations is not to reproduce migration statistics, but rather to generate snapshots of the estimates of expatriates that could be used to measure emigration trends. Using social media in this regard can be a timely and low-cost source of information.  Our model will fetch new data every two months, which, we hope, will give a glimpse into the cross-border movement of the Serbian population. However, there are important methodological and data integrity issues with using social media data sources that we will discuss and address.  
 
 ## 2. Facebook API and data
 
-We use data from the Facebook API to estimate the number of Serbian “expats” in countries around the world. "Expat" is Facebook's definition of a person who lived in one country ("home country") at some point in their life, but moved to another country. "Home country" in our case is Serbia, and host countries are all coutries recognized by Facebook's API. Additionally, we added additional parameters, such as age group, education, marriage status and gender. The API returns the estimates of the number of monthly users who were active on social networks in the host country. The social networks include Facebook, Instagram, and Messenger. The estimates present a subset of the total population and need to be calibrated based on the official numbers. 
+We use data from the Facebook API to estimate the number of Serbian “expats” in countries around the world. "Expat" is Facebook's definition of a person who lived in one country ("home country") at some point in their life but moved to another country. "Home country" in our case is Serbia, and host countries are all countries recognized by Facebook's API. Additionally, we added additional parameters, such as age group, education, marital status, and gender. The API returns the estimates of the number of monthly users who were active on social networks in the host country. The social networks include Facebook, Instagram, and Messenger. The estimates present a subset of the total population and need to be calibrated based on the official numbers. 
 
 
 ### 2.1 Fetching the data
@@ -78,7 +78,7 @@ Some of the results were not expected, such as India, Indonesia and Mongolia. We
 ![Rank](data/rank.png)
 
 
-We compared the age structure of the Serbian Facebook users with the official data from the Statistical Office of Serbia and found a signifficant age bias. Additionally, the number of Facebook users aged 18-24 is higher than the country's population in the same age group. The likely reason is the existence of abandoned accountrs, and/or multiple accounts per person (same person has an account of Facebook, Instagram, and Messenger). Finally, the data does not exhibit signifficant gender bias, as the ratio of female to male users is 49/51.
+We compared the age structure of the Serbian Facebook users with the official data from the Statistical Office of Serbia and found a significant age bias. Additionally, the number of Facebook users aged 18-24 is higher than the country's population in the same age group. The likely reason is the existence of abandoned accounts and/or multiple accounts per person (the same person has an account of Facebook, Instagram, and Messenger). Finally, the data does not exhibit significant gender bias, as the ratio of female to male users is 49/51.
 
 ![Pyramid](data/Structure.png)
 
@@ -96,15 +96,17 @@ The goal is to estimate the number of expats based on non-representative raw Fac
 
 ### 3.1 Analyze the robustness of Facebook data
 
-Altough there is a large difference between the total number of estimated expats by Facebook and semi-official data on the size of Serbian diaspora, Facebook data can still be valid and useful if it proves to caputre the magnitude of emigration and the variation between different countries. In our initial analysis, we downloaded the official host-country esimtates of the Serbian population in EU countries plus Australia, Canada, Switzerland and USA. When compared with Facebook data, the two data sets share a similar spatial distribution (Pearson correlation of r = 0.91, p<0.001).
+Although there is a large difference between the total number of estimated expats by Facebook and semi-official data on the size of Serbian diaspora, Facebook data can still be valid and useful if it proves to capture the magnitude of emigration and the variation between different countries. In our initial analysis, we downloaded the official host-country estimates of the Serbian population in EU countries plus Australia, Canada, Switzerland, and the USA. When compared with Facebook data, the two data sets share a similar spatial distribution (Pearson correlation of r = 0.91, p<0.001).
 
-Regarding the temporal evolution of emigration, Facebook does not offer any historical data. Temporal trends can, however, be traced through repeated data collections, eventually building up a historic repository. 
+Regarding the temporal evolution of emigration, Facebook does not offer any historical data. Temporal trends can, however, be traced through repeated data collections, eventually building up a historical repository. 
+
 
 ### 3.2. Clean the data
 
-Some of the initial results are surprising. The query returned a suprisingly large estimates for Serbian expats in India and Bangladesh and surprisingly low estimate for China. Other researchers noted that censoring efforts in China make it impossible to estimate expat population in that country. However, we are still looking into the numbers in India and Bangladesh. We are testing two hypotheses - first, there is a non-negligible number of Indian citizens who worked in Serbia, but moved back to their country, and second, Facebook's algorithm for identifying expats is sensitive to large host country populations.  
+Some of the initial results are surprising. The query returned surprisingly large estimates for Serbian expats in India and Bangladesh and surprisingly low estimate for China. Other researchers noted that censoring efforts in China make it impossible to estimate expat population in that country. However, we are still looking into the numbers in India and Bangladesh. We are testing two hypotheses - first, there is a non-negligible number of Indian citizens who worked in Serbia but moved back to their country. Second, Facebook's algorithm for identifying expats is sensitive to large host country populations.  
 
 ### 3.3 Develop a model and calibrate the data
 
-For our model, we will use weighted regression model to find the corrected number of expats in a host country c, for age group a, and gender g, denoted by Nc(a,g,c). This number  corresponds to the "real" population of the demographic group in the host country. Nc(a,g,c) is iteratively estimated by multiplying the raw Facebook numbers Nr(a,g,c) by coefficients. The purpose of the coefficient is to correct Facebook’s over or under-representations, and is estimated
+For our model, we will use the weighted regression model to find the corrected number of expats in a host country c, for age group a, and gender g, denoted by Nc(a,g,c). This number corresponds to the "real" population of the demographic group in the host country. Nc(a,g,c) is iteratively estimated by multiplying the raw Facebook numbers Nr(a,g,c) by coefficients. The purpose of the coefficient is to correct Facebook’s over or under-representation.
+
 
