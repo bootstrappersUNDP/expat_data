@@ -103,7 +103,7 @@ Regarding the temporal evolution of emigration, Facebook does not offer any hist
 
 ### 3.2. Clean the data
 
-Some of the initial results are surprising. The query returned surprisingly large estimates for Serbian expats in India and Bangladesh and surprisingly low estimate for China. Other researchers noted that censoring efforts in China make it impossible to estimate expat population in that country. However, we are still looking into the numbers in India and Bangladesh. We are testing two hypotheses - first, there is a non-negligible number of Indian citizens who worked in Serbia but moved back to their country. Second, Facebook's algorithm for identifying expats is sensitive to large host country populations.  
+Some of the initial results are surprising. The query returned surprisingly large estimates for Serbian expats in India and Mongolia and surprisingly low estimate for China. Other researchers noted that censoring efforts in China make it impossible to estimate expat population in that country. However, we are still looking into the numbers in India and Mongolia. We are testing two hypotheses - first, there is a non-negligible number of Indian citizens who worked in Serbia but moved back to their country. Second, Facebook's algorithm for identifying expats is sensitive to large host country populations.  
 
 ### 3.3 Develop a model and calibrate the data
 
