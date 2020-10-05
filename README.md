@@ -1,8 +1,16 @@
-# pySocialWatcher
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-### A Social Data Collector from Facebook Marketing API
-#### I'm more than pleased that many teams used this library. But I need your help to support it. Please feel free to pull requests that solve issues. Unfortunatelly, my time is very very limited to keep updating this repository.
-#### If this package helps your research somehow, reference this paper:
+# Facebook Expats Data
+
+## 1. Introduction
+This depository is used to build the code and download Facebook data, which serves as an input for the analysis and visualization of the Serbian emigration. This account will be handed over to the UNDP team upon the completion of the project. The purpose of using the Facebook estimations is not to reproduce migration statistics, but rather to generate snapshots of the estimates of expatriates that could be used to measure emigration trends. Using social media in this regard can be a timely and low-cost source of information.  Our model will fetch new data every two months, which, we hope, will give a glimpse into the cross-border movement of the Serbian population. However, there are important methodological and data integrity issues with using social media data sources that we will discuss and address.  
+
+## 2. Facebook API and data
+
+We use data from the Facebook API to estimate the number of Serbian “expats” in countries around the world. "Expat" is Facebook's definition of a person who lived in one country ("home country") at some point in their life but moved to another country. "Home country" in our case is Serbia, and host countries are all countries recognized by Facebook's API. Additionally, we added additional parameters, such as age group, education, marital status, and gender. The API returns the estimates of the number of monthly users who were active on social networks in the host country. The social networks include Facebook, Instagram, and Messenger. The estimates present a subset of the total population and need to be calibrated based on the official numbers. 
+
+
+### 2.1 Fetching the data
+
+To connect with the API, we used python library [pySocialWatcher](https://github.com/maraujo/pySocialWatcher/blob/master/README.md).
 
 ```
 @inproceedings{araujo2017facebook,
@@ -16,35 +24,32 @@
  keywords = {Facebook, Advertising, Epidemihology, Social Media, Health},
 } 
 ```
-
- 
-[![Build Status](https://travis-ci.org/maraujo/pySocialWatcher.svg?branch=master)](https://travis-ci.org/maraujo/pySocialWatcher)
-[![codecov](https://codecov.io/gh/maraujo/pySocialWatcher/branch/dev/graph/badge.svg)](https://codecov.io/gh/maraujo/pySocialWatcher)
-
-**Package Name:** pysocialwatcher
-
-**Facebook Ads API version supported:** 8.0
-
 **License:** MIT
-
-**Python Version:** 3.8
-
-
-### What is this for
-This package tries to get the full potencial of the Facebook Marketing API for Social Analysis research.
-Recent works show that online social media has a huge potencial to provide interesting insights on trends of across demographic groups.
-
-Examples of research question that it can answer:
-* For each european country, get how many people are interested in Science?
-* Get how many people in each GCC country who is Graduated AND is interested in Football, and how many is not interested in Football breakdown by: gender, age range, scholarity, language and citizenship.
 
 
 ##### Facebook Marketing API Refereces page:
 Targeting Specs: https://developers.facebook.com/docs/marketing-api/targeting-specs/v2.8
 
 Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targeting-search/v2.8
-### Limitations:
-* Current supported API fields are listed below:
+
+#### Install
+    git clone https://github.com/maraujo/pySocialWatcher.git
+    cd pySocialWatcher
+    pip install -r requirements.txt
+    python setup.py install
+    
+#### Quick Start
+You should have a .csv file with your Facebook tokens and accountIDs.
+Example: pySocialWatcher/pysocialwatcher/facebook_tokens_example.csv
+  
+    >>> from pysocialwatcher import watcherAPI 
+    >>> watcher = watcherAPI() 
+    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
+    >>> watcher.run_data_collection("pysocialwatcher/input_examples/quick_example.json")
+
+
+#### Limitations:
+Current supported API fields are listed below:
     ```
     "interests",
     "behaviors",
@@ -58,245 +63,50 @@ Ad Targeting Search API: https://developers.facebook.com/docs/marketing-api/targ
     "geo_locations"
     ```
 
-### Install
-    git clone https://github.com/maraujo/pySocialWatcher.git
-    cd pySocialWatcher
-    pip install -r requirements.txt
-    python3 setup.py install
-    
-### Tips added by Tica
-Create a separate virtual environment before installing all the pakcages.
-    
-    python3 -m venv env
-    . env/bin/activate
-
-### Quick Start
-You should have a .csv file with your Facebook tokens and accountIDs.
-Example: pySocialWatcher/pysocialwatcher/facebook_credentials_example.csv
-  
-    python3 pysocialwatcher/test_windows.py
-
-or
-
-    >>> from pysocialwatcher import watcherAPI 
-    >>> watcher = watcherAPI() 
-    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcher.run_data_collection("pysocialwatcher/input_examples/quick_example.json")
-
-### How it works (slides):
-Check the slides: https://goo.gl/WzE9ic
-
-### Features
-1. Static input json format to make you experiments easily reproducible.
-2. Support multiple Facebook tokens.
-3. Multiple tokens are processed in parallel to speedup data collection.
-3. Complex logic queries in the Facebook Marketing API with 'or', 'and', 'not', for example:.
-```
-      "interests": [{
-            "not": [6003442346642],
-            "and": [6004115167424, 6003277229371],
-            "name": "Not interested in Football, but interest in some physical activity"
-        }
-```
-4. Automatically save the state every constants.SAVE_EVERY requests. If any problem happens you can load the incomplete file and continue the data collection (```load_data_and_continue_collection```)
-
-#### Input Json Format Example
-
-The following input is an example of input format of the package. In this example it will perform several requests in the Facebook Marketing API in order to collect the audience realted to Soccer Interest in GCC countries.
-
-    {   "name": "Soccer Interest",
-         "geo_locations": [
-              { "name": "countries", "values": ["BH"] },
-              { "name": "countries", "values": ["KW"] },
-              { "name": "countries", "values": ["OM"] },
-              { "name": "countries", "values": ["QA"] },
-              { "name": "countries", "values": ["SA"] },
-              { "name": "countries", "values": ["AE"] }
-    ],
-    "genders": [1,2],
-    "ages_ranges": [
-        {"min":18, "max":24},
-        {"min":55}
-    ],
-    "scholarities":[{
-        "name" : "Graduated",
-        "or" : [3,7,8,9,11]
-      }
-    ],
-    "languages":[{
-        "name" : "Arabic",
-        "values" : [28]
-        },
-        null
-    ],
-    "behavior": [
-        {
-          "or": [6015559470583],
-          "name": "Expats"
-        },
-        {
-          "not": [6015559470583],
-          "name": "Not Expats"
-        }
-    ],
-    "interests": [{
-            "not": [6003442346642],
-            "and": [6004115167424, 6003277229371],
-            "name": "Not interested in Football, but interest in physical activity"
-        },{
-            "or": [6003442346642],
-            "name" : "Football"
-        }
-    ]
-    }
-In total it will perform 192 requests which are created in the following way:
-```
-For each GCC country in the geo_locations field:
-    For each gender in [1,2]:
-        For each age range in [18-24,55+]:
-            For each scholarity group:
-                For each language group:
-                    For each behavior group:
-                        For each interest group:
-                            doFacebookAPIRequest()
-            
-```
-So it will collect the audience for all of the combinations specified in the input file. If you don't want to specify a specific field you can ommit in the input or put a null value in the list like:
-```
-"languages":[{
-    "name" : "Arabic",
-    "values" : [28]
-    },
-    null
-],
-
-```
-#### Find Targeting IDs given Query
-    >>> from pysocialwatcher import watcherAPI 
-    >>> watcher = watcherAPI() 
-    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcher.print_search_targeting_from_query_dataframe("Parents")
-    
-    +----+-----------------+----------------------------------------+------------------+------------------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------+
-    |    |   audience_size | description                            |               id | name                                                 | path                                                                                                    | type              |
-    |----+-----------------+----------------------------------------+------------------+------------------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------|
-    |  0 |       286670228 | People who are parents.                |    6002714398372 | Parents (All)                                        | [u'Demographics', u'Parents', u'All Parents', u'Parents (All)']                                         | family_statuses   |
-    |  1 |        92661179 | Parents with children 18-26 years old. |    6023005718983 | (18-26 Years) Parents with Adult Children            | [u'Demographics', u'Parents', u'All Parents', u'(18-26 Years) Parents with Adult Children ']            | family_statuses   |
-    |  2 |        45169601 | Parents with children 13-18 years old. |    6023005681983 | (13-18 Years) Parents with Teenagers                 | [u'Demographics', u'Parents', u'All Parents', u'(13-18 Years) Parents with Teenagers ']                 | family_statuses   |
-    |  3 |        13123437 | Parents with Children ages 8-12        |    6023080302983 | (08-12 Years) Parents with Preteens                  | [u'Demographics', u'Parents', u'All Parents', u'(08-12 Years) Parents with Preteens']
-    ...
-    
-#### Find Interest IDs given name Name
-    >>> from pysocialwatcher import watcherAPI 
-    >>> watcher = watcherAPI() 
-    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcher.print_interests_given_query("Family")
-    
-    +----+------------+---------------+--------------------------+--------------------------------------------------------------------+
-    |    |   audience |   interest_id | name                     | path                                                               |
-    |----+------------+---------------+--------------------------+--------------------------------------------------------------------|
-    |  0 | 1019524230 | 6012684376438 | Family and relationships | [u'Interests', u'Family and relationships']                        |
-    |  1 |  788072890 | 6003476182657 | Family                   | [u'Interests', u'Family and relationships', u'Family']             |
-    |  2 |  178716020 | 6003190413105 | Family (biology)         | [u'Interests', u'Additional Interests', u'Family (biology)']       |
-    |  3 |   58127760 | 6003206382686 | family  planning         | [u'Interests', u'Additional Interests', u'family  planning']       |
-    |  4 |   25284610 | 6002966041646 | family films             | [u'Interests', u'Additional Interests', u'family films']           |
-    |  5 |   18734150 | 6003305411169 | Family Guy               | [u'Interests', u'Additional Interests', u'Family Guy']             |
-    |  6 |   12447740 | 6003455599405 | Royal family             | [u'Interests', u'Additional Interests', u'Royal family']           |
-    |  7 |   10252970 | 6003143952966 | Family of Barack Obama   | [u'Interests', u'Additional Interests', u'Family of Barack Obama'] |
-    +----+------------+---------------+--------------------------+--------------------------------------------------------------------+
-
-#### Find Behavior IDs Lists
-    >>> from pysocialwatcher import watcherAPI 
-    >>> watcher = watcherAPI() 
-    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcher.print_behaviors_list()
-    +-----+------------+---------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+--------------------------------------------------------------------------------------------+
-    |     |   audience |   behavior_id | description                                                                                                       | name                                               | path                                                                                       |
-    |-----+------------+---------------+-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+--------------------------------------------------------------------------------------------|
-    |   0 |  249325232 | 6002714895372 | People whose activities on Facebook suggest they are Frequent travelers.                                          | All frequent travelers                             | [u'Travel', u'All frequent travelers']                                                     |
-    |   1 |   34932108 | 6002714898572 | People who list themselves as small business owners or own small business pages on Facebook                       | Small business owners                              | [u'Digital activities', u'Small business owners']                                          |
-    |   2 |    6444115 | 6002764392172 | People who have used Facebook Payments platform in the past 90 days                                               | FB Payments (All)                                  | [u'Digital activities', u'FB Payments (All)']                                              |
-    |   3 |   91484312 | 6003050295572 | Users who uploaded >50 photos on Facebook in last month.                                                          | Photo uploaders
-    ...
-
-#### Find Geo Location Key Given Query and Location Type
-    >>> from pysocialwatcher import watcherAPI 
-    >>> watcher = watcherAPI() 
-    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcherAPI.print_geo_locations_given_query_and_location_type("new", ["city"])
-    +----+---------+-------------------------+-----------------+-------------------+--------+
-    |    |     key | name                    |   supports_city |   supports_region | type   |
-    |----+---------+-------------------------+-----------------+-------------------+--------|
-    |  0 | 2490299 | New York                |               1 |                 1 | city   |
-    |  1 | 2490287 | New Rochelle            |               1 |                 1 | city   |
-    |  2 | 2528778 | New Braunfels           |               1 |                 1 | city   |
-    |  3 | 2511352 | New Castle              |               1 |                 1 | city   |
-    ....
-
-#### Find all Geo Locations Given Location Type and Country
-    >>> from pysocialwatcher import watcherAPI 
-    >>> watcher = watcherAPI() 
-    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcherAPI.print_geo_locations_given_query_and_location_type(None, ["region"], country_code='ID')
-
-    +----+----------------+----------------+-------+------------------------------+-----------------+-------------------+--------+
-    |    | country_code   | country_name   |   key | name                         | supports_city   | supports_region   | type   |
-    |----+----------------+----------------+-------+------------------------------+-----------------+-------------------+--------|
-    |  0 | ID             | Indonesia      |  1662 | Bali                         | True            | True              | region |
-    |  1 | ID             | Indonesia      |  1676 | East Nusa Tenggara           | True            | True              | region |
-    |  2 | ID             | Indonesia      |  1685 | West Java                    | True            | True              | region |
-    |  3 | ID             | Indonesia      |  1675 | West Nusa Tenggara           | True            | True              | region |
-    ...
-    
-#### Find KML Given Location Key and Location Type
-    >>> from pysocialwatcher import watcherAPI 
-    >>> watcher = watcherAPI() 
-    >>> watcher.load_credentials_file("pysocialwatcher/credentials.csv")
-    >>> watcherAPI.get_kml_given_geolocation("countries", ["BR","CL","AT","US","QA"])
-    +----+---------------------------------------------------+-------------------+
-    |    |     kml                                           | name              |
-    |----+---------------------------------------------------+-------------------+
-    |  0 | <Polygon><outerBoundaryIs><LinearRing><coordin... | Brazil            |
-    |  1 | <Polygon><outerBoundaryIs><LinearRing><coordin... | Chile             |
-    |  2 | <Polygon><outerBoundaryIs><LinearRing><coordin... | Austria           |
-    |  3 | <Polygon><outerBoundaryIs><LinearRing><coordin... | United States     |
-    ....
+More information on the definition of the categories can be found here https://developers.facebook.com/docs/marketing-api/audiences/reference/advanced-targeting/.
 
 
-#### Advaced Configurations
-##### Change Sleep time between requests to 10s:
+### 2.2. Downloaded data
 
-    from pysocialwatcher import constants
-    constants.SLEEP_TIME = 10
+The query returned a total of around 600 thousand monthly users who are identified as Serbian expats. The map below presents per-country breakdown of that number.
 
-##### Change save temporary file every 1000 requests:
-
-    from pysocialwatcher import constants
-    constants.SAVE_EVERY = 1000
-  
-##### Specify that results should be saved to the directory `data/pySocialWatcher/test_query_results/`
-
-    watcher.run_data_collection("pySocialWatcher/pysocialwatcher/quick_example.json", 
-                                "data/pySocialWatcher/test_query_results/")
-
-_Note: Assumes that the directory already exists. Filepath is added to the beginning of the output `.csv` files generated._ 
+![Map](data/Map.png)
 
 
-### Potential Issues:
-1. If you received the error: *You are calling a deprecated version of the Ads API*, means that Facebook updated the API. One way to fix is changing the first 3 variables of the constants.py file to the current Facebook API. This does not guarantee that everything will work.
+Some of the results were not expected, such as India, Indonesia and Mongolia. We will discuss these results in more detail later in the text.
 
-### Change Log
-* 2.0a - Fix bug from @joaopalotti and thank @KangboLu, @kpolimis, @khof312 for previous commits.
-* 0.1j - Get more informative dataframes from: get_behavior_dataframe, get_interests_given_query, get_search_targeting_from_query_dataframe
-* 0.1i - Errors more understable and some small fixes.
-* 0.1h - AND working for behavior. Thanks @ianbstewart.
-* 0.1g - Besides MAU, now we also captures DAU. Thanks @VatsalaSingh.
-* 0.1f - Call version v2.11 of Facebook Marketing API
-* 0.1e - Add support to *not* for demographics that uses specific integer numbers such as scholarity
-* 0.1d - Add support to household_composition
-* 0.1b2 - Add support to relationship_statuses and check input keys
-* 0.1b0 - Search any query with get_search_targeting_from_query_dataframe()
-* 0.1a3 - Resilient error handling when error code = 2 (try again more constants.MAX_NUMBER_TRY times)
-* 0.1a2 - Fix bug when have multiple operators like (and, not) in the same query
-* 0.1a1 - Add MIT License and 'Geo Location' field support in facebook API
-* 0.1a0 - First Alpha Release
+![Rank](data/rank.png)
+
+
+We compared the age structure of the Serbian Facebook users with the official data from the Statistical Office of Serbia and found a significant age bias. Additionally, the number of Facebook users aged 18-24 is higher than the country's population in the same age group. The likely reason is the existence of abandoned accounts and/or multiple accounts per person (the same person has an account of Facebook, Instagram, and Messenger). Finally, the data does not exhibit significant gender bias, as the ratio of female to male users is 49/51.
+
+![Pyramid](data/Structure.png)
+
+
+## 3. Methodology
+
+Our methodology is based on the following three papers:
+[Monitoring of the Venezuelan exodus through
+Facebook’s advertising platform](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0229175)
+[Quantifying international human mobility
+patterns using Facebook Network data](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0224134)
+[Migration Data using Social Media](https://ec.europa.eu/jrc/en/publication/migration-data-using-social-media-european-perspective)
+
+The goal is to estimate the number of expats based on non-representative raw Facebook data. We propose a three-step method:
+
+### 3.1 Analyze the robustness of Facebook data
+
+Although there is a large difference between the total number of estimated expats by Facebook and semi-official data on the size of Serbian diaspora, Facebook data can still be valid and useful if it proves to capture the magnitude of emigration and the variation between different countries. In our initial analysis, we downloaded the official host-country estimates of the Serbian population in EU countries plus Australia, Canada, Switzerland, and the USA. When compared with Facebook data, the two data sets share a similar spatial distribution (Pearson correlation of r = 0.91, p<0.001).
+
+Regarding the temporal evolution of emigration, Facebook does not offer any historical data. Temporal trends can, however, be traced through repeated data collections, eventually building up a historical repository. 
+
+
+### 3.2. Clean the data
+
+Some of the initial results are surprising. The query returned surprisingly large estimates for Serbian expats in India and Mongolia and surprisingly low estimate for China. Other researchers noted that censoring efforts in China make it impossible to estimate expat population in that country. However, we are still looking into the numbers in India and Mongolia. We are testing two hypotheses - first, there is a non-negligible number of Indian citizens who worked in Serbia but moved back to their country. Second, Facebook's algorithm for identifying expats is sensitive to large host country populations.  
+
+### 3.3 Develop a model and calibrate the data
+
+For our model, we will use the weighted regression model to find the corrected number of expats in a host country c, for age group a, and gender g, denoted by Nc(a,g,c). This number corresponds to the "real" population of the demographic group in the host country. Nc(a,g,c) is iteratively estimated by multiplying the raw Facebook numbers Nr(a,g,c) by coefficients. The purpose of the coefficient is to correct Facebook’s over or under-representation.
+
+
