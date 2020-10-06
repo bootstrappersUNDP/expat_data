@@ -1,3 +1,0 @@
-1. Current program is in "test_windows.py", which is running the query in "undp_group.json". Change the query according to the needs.
-2. Replace token in "credentials.csv" to UNDP owned fb account's tokens
-3. Change saving from compressed format to other sqlite-like way
